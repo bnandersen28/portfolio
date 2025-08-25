@@ -1,0 +1,79 @@
+/* Make canvas sit behind all content */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Courier New', monospace;
+  color: white;
+}
+
+.pic {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.pic-content {
+  z-index: 10;
+  text-align: center;
+  
+}
+
+.fall-in {
+  opacity: 0;
+  font-size: 3em;
+  transform: translateY(-200px);
+  animation: dropIn 1.5s ease-out forwards;
+}
+
+@keyframes dropIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(20px); /* overshoot */
+  }
+  100% {
+    transform: translateY(0);
+     opacity: 1;
+  }
+}
+
+/* Green nav bar */
+.navbar {
+  background: #2e7d32;   /* dark green */
+  color: white;
+  padding: 15px;
+  position: relative;    /* sits below mountains */
+  text-align: center;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar li {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
