@@ -2,7 +2,8 @@ let t = 0;
 let stars = [];
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    let cnv = createCanvas(windowWidth, windowHeight);
+    cnv.parent("home");
     noStroke();
 
     // Pre-generate star positions

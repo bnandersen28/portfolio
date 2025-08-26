@@ -1,79 +1,284 @@
 /* Make canvas sit behind all content */
 canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 0;
+
+
 }
 
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font-family: 'Courier New', monospace;
-  color: white;
+#home {
+    position: relative;
+
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Courier New', monospace;
+    color: white;
+    overflow-x: hidden;
 }
 
 .pic {
-  height: 100vh;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
 }
 
 .pic-content {
-  z-index: 10;
-  text-align: center;
-  
+    z-index: 10;
+    text-align: center;
+}
+
+.pic-content h1 {
+    margin-bottom: 5px;
+    font-size: 3em;
+}
+
+.pic-content p {
+    margin-top: 5px;
+    font-size: 2em;
+}
+
+.pic-buttons {
+    margin-top: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 0 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.1);
+    /* transparent look */
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    color: #000;
 }
 
 .fall-in {
-  opacity: 0;
-  font-size: 3em;
-  transform: translateY(-200px);
-  animation: dropIn 1.5s ease-out forwards;
+    opacity: 0;
+    transform: translateY(-200px);
+    animation: dropIn 1.5s ease-out forwards;
 }
 
 @keyframes dropIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-200px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateY(20px); /* overshoot */
-  }
-  100% {
-    transform: translateY(0);
-     opacity: 1;
-  }
+    0% {
+        opacity: 0;
+        transform: translateY(-200px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(20px);
+        /* overshoot */
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-/* Green nav bar */
-.navbar {
-  background: #2e7d32;   /* dark green */
-  color: white;
-  padding: 15px;
-  position: relative;    /* sits below mountains */
-  text-align: center;
+/* Nav bar (choose background color: gray, black, or white) */
+.main-nav {
+    background: #000;
+    /* try #333 for dark gray, #000 for black, #fff for white */
+    padding: 25px 30px;
+    text-align: center;
+    margin: 0;
 }
 
-.navbar ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.navbar li {
-  display: inline-block;
-  margin: 0 20px;
+.main-nav li {
+    display: inline-block;
+    margin: 0 30px;
 }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+.main-nav a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: white;
+    /* works for dark nav */
+}
+
+.main-nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* Content box with gradient */
+.content-box {
+    margin-top: 0px;
+
+    padding: 20px;
+    max-width: 100%;
+    border-radius: 10px;
+
+    /* Gradient through animation colors */
+    background: linear-gradient(to bottom,
+            rgb(252, 128, 3),
+            /* sunrise orange */
+            rgb(255, 182, 193),
+            /* sunrise pink */
+            rgb(135, 206, 235),
+            /* sky blue */
+            rgb(128, 0, 128),
+            /* sunset purple */
+            rgb(20, 24, 82)
+            /* night navy */
+        );
+    color: white;
+}
+
+.content-box h2 {
+    margin-top: 0;
+}
+
+#about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+}
+
+#about h1 {
+    font-size: 2.2em;
+     text-shadow: 0 0 15px rgba(255, 200, 50, 0.8);
+}
+
+#about h1::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 8px;
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    border-radius: 4px;
+}
+
+.about {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+    font-size: 1em;
+    flex-direction: row;
+}
+
+.personal {
+    display: flex;
+    flex: 1;
+    width: 50%;
+    align-items: center;
+    flex-direction: column;
+}
+
+.personal p {
+    font-weight: bold;
+}
+
+.personal img {
+    width: 50%;
+}
+
+.skills {
+    display: flex;
+    flex: 1;
+    width: 50%;
+    flex-direction: column;
+    text-align: center;
+}
+
+.skills h2{
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.scroll-row {
+    overflow: hidden;
+    width: 100%;
+    height: 80px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+}
+
+.scroll-content {
+    position: absolute;
+    display: flex;
+    gap: 40px;
+    height: 100%;
+    align-items: center;
+    left: 0;
+    animation: scroll 30s linear infinite;
+    margin-bottom: 10px;
+}
+
+
+.scroll-row img {
+    height: 60px;
+    /* make all logos same size */
+    flex-shrink: 0;
+    /* don’t shrink when overflowing */
+    transition: transform 0.3s ease;
+}
+
+.scroll-content img {
+    height: 80px;
+    width: 80px;
+    flex-shrink: 0;
+    /* don’t shrink when overflowing */
+    transition: transform 0.3s ease;
+    object-fit: contain;
+
+    border-radius: 5px;
+    box-sizing: border-box
+}
+
+.scroll-content img:hover {
+    transform: scale(1.1);
+    /* slight zoom on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translate(-50%);
+    }
+}
+
+#projects {
+    align-items: center;
+    text-align: center;
 }
