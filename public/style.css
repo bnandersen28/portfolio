@@ -14,11 +14,11 @@ canvas {
 
 }
 
-body{
+body {
     padding-top: env(safe-area-inset-top);
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
-  padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 body,
@@ -28,6 +28,7 @@ html {
     height: 100%;
     font-family: 'Courier New', monospace;
     color: white;
+    scroll-behavior: smooth;
     overflow-x: hidden;
 }
 
@@ -107,9 +108,12 @@ html {
 .main-nav {
     background: #000;
     /* try #333 for dark gray, #000 for black, #fff for white */
-    padding: 25px 30px;
+    padding: 20px 25px;
     text-align: center;
     margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .main-nav ul {
@@ -140,9 +144,7 @@ html {
 .content-box {
     margin-top: 0px;
 
-    padding: 20px;
     max-width: 100%;
-    border-radius: 10px;
 
     /* Gradient through animation colors */
     background: linear-gradient(to bottom,
@@ -158,6 +160,8 @@ html {
             /* night navy */
         );
     color: white;
+    min-height: 100vh;
+    z-index: 0;
 }
 
 .content-box h2 {
@@ -174,7 +178,16 @@ html {
 
 #about h1 {
     font-size: 2.2em;
-     text-shadow: 0 0 15px rgba(255, 200, 50, 0.8);
+    color: white;
+    text-shadow: 0 0 15px rgba(255, 200, 50, 0.8);
+    -webkit-text-stroke: 2px black;
+    /* works in WebKit browsers */
+    text-shadow:
+        -2px -2px 0 black,
+        2px -2px 0 black,
+        -2px 2px 0 black,
+        2px 2px 0 black;
+    /* fallback for Firefox */
 }
 
 #about h1::after {
@@ -188,6 +201,71 @@ html {
     background: linear-gradient(90deg, #ff8a00, #e52e71);
     border-radius: 4px;
 }
+
+#skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+}
+
+#skills h1 {
+    font-size: 2.8em;
+    color: white;
+    text-shadow: 0 0 15px rgba(255, 200, 50, 0.8);
+    -webkit-text-stroke: 2px black;
+    /* works in WebKit browsers */
+    text-shadow:
+        -2px -2px 0 black,
+        2px -2px 0 black,
+        -2px 2px 0 black,
+        2px 2px 0 black;
+    /* fallback for Firefox */
+}
+
+#skills h1::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 8px;
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    border-radius: 4px;
+}
+
+/* starting hidden state */
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-100px);
+    /* off-screen to the left */
+    transition: all 0.8s ease-out;
+    /* smooth transition */
+}
+
+/* when active */
+.slide-in-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* start off hidden, shifted right */
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(100px);
+    /* pushed right */
+    transition: all 0.8s ease-out;
+}
+
+/* when active (scrolled into view) */
+.slide-in-right.active {
+    opacity: 1;
+    transform: translateX(0);
+    /* slide back into place */
+}
+
 
 .about {
     display: flex;
@@ -206,7 +284,7 @@ html {
 }
 
 .personal p {
-    font-weight: bold;
+    font-size: 1em;
 }
 
 .personal img {
@@ -219,9 +297,10 @@ html {
     width: 50%;
     flex-direction: column;
     text-align: center;
+    align-items: center;
 }
 
-.skills h2{
+.skills h2 {
     margin-bottom: 30px;
     margin-top: 30px;
 }
@@ -288,4 +367,123 @@ html {
 #projects {
     align-items: center;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#projects h2 {
+    font-size: 3em;
+    text-shadow: 0 0 15px rgba(255, 200, 50, 0.8);
+    -webkit-text-stroke: 2px black;
+    /* works in WebKit browsers */
+    text-shadow:
+        -2px -2px 0 black,
+        2px -2px 0 black,
+        -2px 2px 0 black,
+        2px 2px 0 black;
+    margin-top: 30px;
+    /* fallback for Firefox */
+}
+
+#projects h2::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 8px;
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    border-radius: 4px;
+}
+
+.project-container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.project-box {
+    background-color: rgba(255, 242, 242, 0.3);
+    width: 70%;
+    height: 70vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.project-box img {
+    width: 85%;
+    height: 85%;
+}
+
+.project-box img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.project-text {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+#contact{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.contact-form button {
+  padding: 12px;
+  background: #ff8a00;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact-form button:hover {
+  background: #e52e71;
+}
+
+.footer{
+    width: 100%;
+    background-color: rgba(255, 242, 242, 0.3);
+    height: auto;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer img{
+    width: 30px;
+    height: 30px;
+    padding: 20px;
 }
