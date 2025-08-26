@@ -14,6 +14,13 @@ canvas {
 
 }
 
+body{
+    padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 body,
 html {
     margin: 0;
@@ -26,7 +33,7 @@ html {
 
 .pic {
     height: 100vh;
-
+    min-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;
