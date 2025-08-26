@@ -5,6 +5,7 @@ canvas {
     width: 100%;
     height: auto;
     top: 0;
+    min-height: 100vh;
 
 
 }
@@ -64,7 +65,7 @@ html {
 .btn {
     display: inline-block;
     padding: 12px 24px;
-    margin: 0 10px;
+    margin: 10px 10px;
     border: 2px solid white;
     border-radius: 5px;
     color: white;
@@ -285,6 +286,7 @@ html {
 
 .personal p {
     font-size: 1em;
+    font-weight: bold;
 }
 
 .personal img {
@@ -440,6 +442,32 @@ html {
     margin-top: 20px;
 }
 
+#contact h1 {
+    font-size: 2.5em;
+    color: white;
+    text-shadow: 0 0 15px rgba(255, 200, 50, 0.8);
+    -webkit-text-stroke: 2px black;
+    /* works in WebKit browsers */
+    text-shadow:
+        -2px -2px 0 black,
+        2px -2px 0 black,
+        -2px 2px 0 black,
+        2px 2px 0 black;
+    /* fallback for Firefox */
+}
+
+#contact h1::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 8px;
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    border-radius: 4px;
+}
+
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -483,7 +511,8 @@ html {
 }
 
 .footer img{
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     padding: 20px;
 }
+
