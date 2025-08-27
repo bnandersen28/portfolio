@@ -11,7 +11,9 @@ function setup() {
         stars.push({
             x: random(width),
             y: random(height * 0.8), // avoid bottom ground
-            size: random(1, 3)
+            size: random(1, 3),
+            twinkleSpeed: random(0.002, 0.01),
+            phase: random(TWO_PI)
         });
     }
 
@@ -46,6 +48,20 @@ function draw() {
         bg = lerpColor(sunsetColor, nightColor, amt);
     }
     background(bg);
+
+    //Night factor for fading stars/clouds
+    let nightFactor = 0;
+    if(cycle > 0.75){
+        nightFactor = map(cycle, 0.75, 1, 0, 1);
+    } else if (cycle < 0.05){
+        nightFactor = map(cycle, 0, 0.05, 1, 0);
+    }
+
+    //Ensure stars and clouds are behind mountains
+    if(nightFactor > 0){
+        drawStars(nightFactor);
+        drawClouds(nightFactor);
+    }
 
     // Mountains
     fill(50);
@@ -102,23 +118,26 @@ function draw() {
         }
         noStroke();
     }
-    // Nightime 
-    if(cycle > 0.75 || cycle< 0.05){
-        drawStars();
-        drawClouds();
-    }
     t+=0.001;
 }
 
-function drawStars(){
+function drawStars(nightFactor){
     for(let s of stars){
-        fill(255, 255, 255, random(150, 255));
+        let alpha = map(sin(frameCount * s.twinkleSpeed + s.phase), 
+        -1, 1, 
+        50, 180) * nightFactor;
+        
+        fill(255, 255, 255, alpha);
         ellipse(s.x, s.y, s.size, s.size);
+
+        //soft glow 
+        fill(255, 255, 255, alpha/3);
+        ellipse(s.x, s.y, s.size * 2, s.size * 2);
     }
 }
 
-function drawClouds(){
-    fill(255, 255, 255, 40);
+function drawClouds(nightFactor){
+    fill(255, 255, 255, 40 * nightFactor);
     noStroke();
 
     //drifting groups
