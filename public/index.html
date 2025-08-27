@@ -39,18 +39,23 @@
         <section id="about">
 
             <div class="personal">
-                <h1 class="slide-in-left">About Me</h1>
-                <img src="imgs/avatar.png" class="slide-in-left" alt="Female Avatar">
-                <p>Hi, my name is Bayleigh Andersen and I am a recent Computer Science graduate of the College of
-                    William and Mary with a concentration in Cybersecurity. I have hands-on experience coding
-                    on both the frontend and the backend, giving me the flexibility to design complete solutions
-                    that are not only functional, but also secure and user-friendly.
-                </p>
-                <p>I am currently seeking opportunities to partner with freelance clients on web development
-                    projects of all kinds,while also pursuing opportunities in software engineering, where I can
-                    continue to learn,
-                    grow, and collaborate.
-                </p>
+                <h1 class="slide-in-left">About</h1>
+                <div class="personal-container">
+                    <img src="imgs/avatar.png" class="slide-in-left" alt="Female Avatar">
+                    <div class="personal-text">
+                        <p>Hi, my name is Bayleigh Andersen and I am a recent Computer Science graduate of the College
+                            of
+                            William and Mary with a concentration in Cybersecurity. I have hands-on experience coding
+                            on both the frontend and the backend, giving me the flexibility to design complete solutions
+                            that are not only functional, but also secure and user-friendly.
+                        </p>
+                        <p>I am currently seeking opportunities to partner with freelance clients on web development
+                            projects of all kinds,while also pursuing opportunities in software engineering, where I can
+                            continue to learn,
+                            grow, and collaborate.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
         <section id="skills">
@@ -124,7 +129,8 @@
                 </div>
                 <div class="project-text">
                     <h1>Uncle Geri's Driving Academy</h1>
-                    <p>Allows students to register and pay for driving courses, and instructor to manage registrations, messages, and course info and prices displayed on the front end.</p>
+                    <p>Allows students to register and pay for driving courses, and instructor to manage registrations,
+                        messages, and course info and prices displayed on the front end.</p>
                     <a href="https://unclegerisdrivingacademy.com/" class="btn">Live Site</a>
                     <a href="https://github.com/bnandersen28/unclegeri" class="btn">Frontend GitHub</a>
                 </div>
@@ -132,7 +138,8 @@
             <div class="project-container">
                 <div class="project-text">
                     <h1>Stand Up For Yourself and Others!</h1>
-                    <p>Info here</p>
+                    <p>Informational website built using HTML/CSS and JS.
+                    Currently coding backend to allow admin to add events.</p>
                     <a href="https://standupforyourselfandothers.org/" class="btn">Live Site</a>
                     <a href="https://github.com/bnandersen28/standupwebsite" class="btn">Frontend GitHub</a>
                 </div>
@@ -143,7 +150,7 @@
         </section>
 
         <section id="contact">
-            <h1 class="slide-in-left">Contact Me</h1>
+            <h1 class="slide-in-left">Contact</h1>
             <form action="https://formspree.io/f/mdkloloq" method="POST" class="contact-form">
                 <label>
                     Your Name:
@@ -174,17 +181,36 @@
 
 </html>
 <script>
-    const sliders = document.querySelectorAll('.slide-in-left', 'slide-in-right');
+    const sliders = document.querySelectorAll('.slide-in-left, .slide-in-right');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.main-nav a');
 
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('active');
-                // Optional: only animate once
-                //observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.2 }); // triggers when 20% visible
+    }, { threshold: 0.4 }); // triggers when 20% visible
 
     sliders.forEach(slide => observer.observe(slide));
+
+    const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                //make matching section active
+                navLinks.forEach(link => link.classList.remove('active'));
+
+                //add active to intersecting link
+                let id = entry.target.getAttribute('id');
+                document.querySelector(`.main-nav a[href="#${id}"]`).classList.add('active');
+            }
+        });
+    }, { threshold: 0.5 }); // triggers when 20% visible
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+
+</script>
+
 </script>

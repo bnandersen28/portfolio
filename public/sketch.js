@@ -43,9 +43,12 @@ function draw() {
         //nightime
         let amt =map(cycle, 0.5, 0.75, 0, 1);
         bg = lerpColor(morningColor, sunsetColor, amt);
-    }else{
-        let amt = map(cycle, 0.75, 1, 0, 1);
+    }else if (cycle , 0.95){
+        let amt = map(cycle, 0.75, 0.95, 0, 1);
         bg = lerpColor(sunsetColor, nightColor, amt);
+    }else{
+        let amt = map(cycle, 0.95, 1, 0, 1);
+        bg = lerpColor(nightColor, sunriseColor, amt);
     }
     background(bg);
 
