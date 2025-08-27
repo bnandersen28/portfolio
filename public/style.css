@@ -547,4 +547,65 @@ html {
         flex-direction: column;
         align-items: center;
     }
+
+    /* Flip every even container */
+  .project-container:nth-child(odd) {
+    flex-direction: column-reverse; /* swap text & image */
+  }
+
+  .project-box{
+    width: 100%;
+  }
+
+  .project-box img{
+    width: 90%;
+  }
+
+  .personal-container{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .personal p{
+    font-size: 1em;
+  }
+  #about h1{
+    font-size: 3em;
+  }
+
+  #skills h1{
+    font-size: 3em;
+  }
+
+  #projects h2{
+    font-size: 3em;
+  }
+
+  #contact h1{
+    font-size: 3em;
+  }
+
+
+  .skills{
+    width: 100%;
+  }
+
+  .main-nav{
+    padding: 10px 10px;
+  }
+
+  .main-nav a{
+    font-size: .9em;
+  }
+
+  .main-nav li{
+    display: inline-block;
+    margin: 0 5px;
+  }
+  
+
+
 }
+
+
+
